@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path');
-const url = 'mongodb+srv://kanishkanaik:kanishkanaik@cluster0.xjsla.mongodb.net/meanstack?retryWrites=true&w=majority'
+const url = 'mongodb+srv://kanishkanaik:kanishkanaik@cluster0.xjsla.mongodb.net/Persons?retryWrites=true&w=majority'
 var cors = require('cors')
 
 //const bodyParser = require('body-parser');
@@ -46,8 +46,8 @@ app.use(function(req, res, next) {
 
 
 
-const usersdataRouter = require('./routes/userdata')
-app.use('/userdata',usersdataRouter)
+const usersdataRouter = require('./routes/persons')
+app.use('/persons',usersdataRouter)
 
 
 const usersRouter = require('./routes/users')

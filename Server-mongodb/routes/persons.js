@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const Farmers = require('../models/userdata')
+const Persons = require('../models/persons')
 
 
 router.get('/:uuid', async (req, res) => {
     try {
-        const allusers = await Farmers.find({
+        const allusers = await Persons.find({
 'userid': String(req.params.uuid),
          
         })
@@ -19,11 +19,13 @@ router.get('/:uuid', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const addfar = await new Farmers({
+        const addfar = await new Persons({
             fullname: req.body.fullname,
      
-            review: req.body.review,
-            rating: req.body.rating,
+            age: req.body.age,
+            gender: req.body.gender,
+            phone: req.body.phone,
+
             userid:req.body.userid
            
 
@@ -43,10 +45,12 @@ router.patch('/:id', async (req, res) => {
 
 
     try {
-        const euser = await Farmers.findById(req.params.id)
+        const euser = await Persons.findById(req.params.id)
         euser.fullname= req.body.fullname,
- euser.review= req.body.review,
-        euser.rating= req.body.rating
+ euser.age= req.body.age,
+        euser.gender= req.body.gender
+        euser.phone= req.body.phone
+
         const a1 = await euser.save()
         res.json({
             status: "done"
@@ -64,7 +68,7 @@ router.patch('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const dalien = await Farmers.findByIdAndDelete(req.params.id)
+        const dalien = await Persons.findByIdAndDelete(req.params.id)
         res.json(dalien)
 
     } catch (err) {
@@ -74,24 +78,6 @@ router.delete('/:id', async (req, res) => {
 
 
 
-
-
-router.post('/many', async (req, res) => {
-    console.log(req.body.dudata);
-    try {
-        const addfar = await Farmers.insertMany(req.body.dudata, function(error, docs) {
-           
-        });
-        res.json({
-            status: "done"
-        })
-
-  
-
-    } catch (err) {
-        res.send('Error' + err)
-    }
-})
 
 
 

@@ -2,21 +2,26 @@ const mongoose = require('mongoose')
 
 
 
-const userdataSchema = new mongoose.Schema({
+const personsSchema = new mongoose.Schema({
 
     fullname: {
         type: String,
         required: true
     },
-    review: {
+    age: {
         type: String,
         required: true
     },
 
-    rating: {
+    gender: {
         type: String,
         required: true
     },
+    phone: {
+        type: String,
+        required: true
+    },
+
 
     userid: {
         type: String,
@@ -28,4 +33,4 @@ const userdataSchema = new mongoose.Schema({
 })
 
 
-module.exports = mongoose.model('userdata', userdataSchema)
+module.exports = mongoose.model('persons', personsSchema)
